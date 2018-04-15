@@ -1,0 +1,10 @@
+version: '3'
+services:
+  nagpnode:
+    image: nagpnode
+    hostname: nagpnode
+    container_name: nagpnode
+    ports:
+            - '4300:4300'
+    environment:
+      DB_CONFIG_SERVER: "nagpdemo.database.windows.net"

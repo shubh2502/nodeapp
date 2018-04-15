@@ -1,0 +1,133 @@
+<html>
+
+<head>
+    <title> Vote Server </title>
+    <!-- Libs including -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Angular-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+
+    <!-- js -->
+    <script src="app.js"></script>
+</head>
+
+<body>
+
+    <div class="container" ng-app="billing" ng-controller="mainController">
+        <h2>Billing</h2>
+        <div class="row col-md-12">
+            <div class="pull-left col-md-4">
+                <button ng-click="getAllData()" class="btn btn-primary">Get All Data</button>
+            </div>
+            <div class="pull-left col-md-4">
+                <button ng-click="inserBulkData()" class="btn btn-info">Bulk insert Data</button>
+            </div>
+            <div class="pull-left col-md-4">
+                <input type="file" class="btn btn-danger" name="Select file" file-upload multiple/>
+            </div>
+
+        </div>
+        <hr/>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Invoice #</th>
+                    <th class="hidden-xs">First Name</th>
+                    <th class="hidden-xs">Last Name</th>
+                    <th class="text-right">Amount
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in items track by $index">
+                    <td>{{item.id}}
+                    </td>
+                    <td class="hidden-xs">{{item.firstname}}</td>
+                    <td class="hidden-xs">{{item.lastname}}</td>
+                    <td class="text-right">${{item.amount}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="sloader" ng-if="showLoader">
+            <div class="loader">
+            </div>
+            <div id="overlay"></div>
+        </div>
+    </div>
+
+
+
+    <style>
+        th {
+            color: #A1A1A1;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        td {
+            color: #444;
+            font-size: 14px;
+        }
+
+        td .mobileSmall {
+            color: #A1A1A1;
+            font-size: 12px;
+        }
+
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite;
+            /* Safari */
+            animation: spin 2s linear infinite;
+            position: absolute;
+            left: 45%;
+            top: 20%;
+        }
+
+        #overlay {
+            top: 0;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            background: #bababa;
+            opacity: 0.3;
+        }
+
+        /* Safari */
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+</body>
+
+</html>
